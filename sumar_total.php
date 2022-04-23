@@ -22,6 +22,12 @@
         "stock" => 5,
         "precio" => 45000,
     );
+    $aProductos[] = array("nombre" => "Impresora HP Laser",
+        "marca" => "HP",
+        "modelo" => "P1102w",
+        "stock" => 5,
+        "precio" => 20000,
+    );
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -31,7 +37,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Listado de productos</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-
 </head>
 <body>
     <main class="container">
@@ -54,6 +59,7 @@
                     <tbody>
                         <?php 
                             $contador = 0;
+                            $subtotal =0;
                             while($contador < count($aProductos)){
                         ?>
                         <tr>
@@ -61,18 +67,21 @@
                             <td><?php echo $aProductos[$contador]["marca"];?></td>
                             <td><?php echo $aProductos[$contador]["modelo"];?></td>
                             <td><?php echo $aProductos[$contador]["stock"]== 0? "No hay stock" : ($aProductos[0]["stock"]> 10? "Hay stock" : "Poco stock");?></td>
-                            <td><?php echo $aProductos[$contador]["precio"];?></td>
+                            <td>$<?php echo $aProductos[$contador]["precio"];?></td>
                             <td><button class="btn btn-primary">Comprar</button></td>
                         </tr>
                         <?php 
+                            $subtotal = $subtotal + $aProductos[$contador]["precio"];
                             $contador++;
                             }
                         ?>
                     </tbody>
                 </table>
+                <div>
+                    <h2>El subtotal es: $<?php echo $subtotal;?></h2>
+                </div>
             </div>
-        </div>
-            
+        </div>   
     </main>
 </body>
 </html>
